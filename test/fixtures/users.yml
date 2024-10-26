@@ -1,0 +1,10 @@
+# test/fixtures/users.yml
+one:
+  name: user_test
+  email: test@example.com
+  password_digest: <%= User.digest('password') %> # Generate a strong hash of the password
+
+two:
+  name: user_two_test
+  email: test_two@example.com
+  password_digest: <%= User.digest('password_two') %> # Generate a strong hash of the password
