@@ -2,13 +2,23 @@
 // We import the routes into the views
 import { createRouter, createWebHistory } from 'vue-router'
 import UserList from '@/views/UserList.vue'
-import Register from '@/views/Register.vue'
-import Update from '@/views/Update.vue'
 
 const routes = [ // Paths to URL
-    { path: '/', component: UserList },
-    { path: '/register', component: Register },
-    { path: '/update/:id', component: Update }
+    {
+        path: '/',
+        name: 'list',
+        component: UserList
+    },
+    {
+        path: '/register',
+        name: 'register',
+        component: () => import('@/views/Register.vue')
+    },
+    {
+        path: '/update/:id',
+        name: 'update',
+        component: () => import('@/views/Update.vue')
+    }
 ]
 
 const router = createRouter({

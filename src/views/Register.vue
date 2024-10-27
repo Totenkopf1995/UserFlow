@@ -31,21 +31,29 @@
       <div class="flex flex-wrap -mx-3 mb-2">
         <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
           <div class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-city">
-            <button type="submit" class="relative inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-green-400 to-blue-600 group-hover:from-green-400 group-hover:to-blue-600 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-green-200 dark:focus:ring-green-800">
+
+            <button
+                type="submit"
+                class="relative inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-green-400 to-blue-600 group-hover:from-green-400 group-hover:to-blue-600 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-green-200 dark:focus:ring-green-800">
             <span class="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
             Register
             </span>
             </button>
+
             <p v-if="error" class="error">{{ error }}</p> <!--Error handling-->
           </div>
         </div>
         <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
           <div class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-zip">
-            <button type="button" @click="cancel()" class="relative inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-pink-500 to-orange-400 group-hover:from-pink-500 group-hover:to-orange-400 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-pink-200 dark:focus:ring-pink-800">
+
+            <button
+                type="button"
+                @click="cancel()" class="relative inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-pink-500 to-orange-400 group-hover:from-pink-500 group-hover:to-orange-400 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-pink-200 dark:focus:ring-pink-800">
             <span class="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
             Cancel
             </span>
             </button>
+
             <p v-if="error" class="error">{{ error }}</p> <!--Error handling-->
           </div>
         </div>
@@ -74,7 +82,7 @@ export default {
       // this.email = '';
       // this.password = '';
       // this.error = null;
-      this.$router.push('/'); // Sends us to the list of users
+      this.$router.push({ name: 'list' }); // Sends us to the list of users
     },
     async registerUser() {
       try {
@@ -99,7 +107,7 @@ export default {
             showConfirmButton: false,
             timer: 1500
           });
-          this.$router.push('/'); // sends us to the list
+          this.$router.push({ name: 'list' }); // sends us to the list
         } else {
           await Swal.fire({ // Error alert when registering by duplicate mail
             icon: "error",

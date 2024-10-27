@@ -4,16 +4,26 @@
       <h1 class="text-2xl font-bold mb-4">List of Users</h1>
       <!--Finder and export buttons-->
       <div class="flex justify-end mb-4">
-        <input v-model="search" type="text" placeholder="To find..." class="border border-gray-300 p-2 rounded-md w-full max-w-xs mr-2" />
-        <button @click="exportData('csv')" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md mr-2">
+        <input v-model="search" type="text" placeholder="To find..." class="border border-gray-300 p-2 rounded-md w-full max-w-xs mr-2"/>
+
+        <button
+            @click="exportData('csv')"
+            class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md mr-2">
           Export CSV
         </button>
-        <button @click="exportData('excel')" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-md mr-2">
+
+        <button
+            @click="exportData('excel')"
+            class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-md mr-2">
           Export Excel
         </button>
-        <button @click="exportData('pdf')" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-md">
+
+        <button
+            @click="exportData('pdf')"
+            class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-md">
           Export PDF
         </button>
+
       </div>
       <table class="min-w-full bg-white">
         <thead>
@@ -29,25 +39,36 @@
           </th>
         </tr>
         </thead>
+
         <tbody>
         <tr v-for="user in filteredUsers" :key="user.id"> <!--Iterating users with their id-->
           <!--Print name and email-->
           <td class="py-2">{{ user.name }}</td>
           <td class="py-2">{{ user.email }}</td>
           <td class="py-2 space-x-6">
+
           <!--Buttons to update and remove users from the list-->
-            <button @click="deleteUser(user.id)" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-md">
+            <button
+                @click="deleteUser(user.id)"
+                class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-md">
               Erase
             </button>
-            <button @click="updateUser(user.id)" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-md">
+
+            <button
+                @click="updateUser(user.id)"
+                class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-md">
               Update
             </button>
+
           </td>
         </tr>
         </tbody>
+
       </table>
+
       <p v-if="!users.length">Empty List.</p> <!--Check for users-->
       <p v-if="error" class="error">{{ error }}</p>
+
     </div>
   </div>
 </template>
@@ -95,7 +116,7 @@ export default {
     },
 
     async updateUser(id) {
-      this.$router.push(`/update/${id}`); // Update button from the list sends us to the update form
+      this.$router.push({ name: 'update', params: { id: id } }); // Update button from the list sends us to the update form
     },
 
     async deleteUser(id) {
@@ -155,11 +176,13 @@ export default {
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);
+
       } else if (format === 'excel') {
         const ws = XLSX.utils.json_to_sheet(exportData);
         const wb = XLSX.utils.book_new();
         XLSX.utils.book_append_sheet(wb, ws, 'Users');
         XLSX.writeFile(wb, 'users.xlsx');
+
       } else if (format === 'pdf') {
         const doc = new jsPDF();
         doc.autoTable({
