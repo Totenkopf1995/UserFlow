@@ -5,16 +5,16 @@
         <nav class="container px-6 py-8 mx-auto md:flex md:justify-between md:items-center">
           <div class="flex items-center justify-between space-x-6">
             <!--Vue Router-->
-            <router-link to="/" class="text-xl font-bold text-gray-800 md:text-2xl hover:text-blue-400">
+            <RouterLink to="/" class="text-xl font-bold text-gray-800 md:text-2xl hover:text-blue-400">
               <button class="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded">
                 List
               </button>
-            </router-link>
-            <router-link to="/register" class="text-xl font-bold text-gray-800 md:text-2xl hover:text-blue-400">
+            </RouterLink>
+            <RouterLink to="/register" class="text-xl font-bold text-gray-800 md:text-2xl hover:text-blue-400">
               <button class="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded">
                 Registration
               </button>
-            </router-link>
+            </RouterLink>
           </div>
           <div class="flex items-center justify-between">
             <a href="https://github.com/Totenkopf1995" target="_blank" rel="noopener noreferrer">
@@ -30,7 +30,7 @@
         </nav>
       </div>
       <!--Vue Router-->
-      <router-view></router-view>
+      <RouterView />
     </div>
     <footer class="bg-white rounded-lg shadow m-4 dark:bg-gray-800">
       <div class="w-full mx-auto max-w-screen-xl p-4 md:flex md:items-center md:justify-between">
