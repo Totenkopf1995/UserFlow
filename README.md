@@ -25,7 +25,7 @@ nvm use 14
 Clone the repository to your local machine:
 
 ```bash
-git clone [your repository link]
+git clone -b frontend https://github.com/Totenkopf1995/UserFlow.git
 cd repository-name
 ```
 
