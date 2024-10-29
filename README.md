@@ -35,7 +35,7 @@ rvm gemset use api_users
 Clone the repository to your local machine:
 
 ```bash
-git clone [your repository link]
+git clone -b backend https://github.com/Totenkopf1995/UserFlow.git
 cd repository-name
 ```
 
