@@ -38,6 +38,22 @@ class UsersController < ApplicationController
     head :no_content # deletes the user without sending a status
   end
 
+  def find_by_name
+    @user = User.where(name: params[:name])
+    render_user_or_error(@user, 'Usuario no encontrado')
+    end
+
+  def find_by_email
+    @user = User.find_by(email: params[:email])
+    render_user_or_error(@user, 'Email no encontrado')
+    end
+
+  def find_by_name_and_email
+    @user = User.where(name: params[:name],
+      email: params[:email])
+    render_users_or_error(@users, 'Email o Name no encontrados')
+  end
+
   private
   # Use callbacks to share common setup or constraints between actions.
   def set_user
@@ -47,5 +63,29 @@ class UsersController < ApplicationController
   # Only allow a list of trusted parameters through.
   def user_params
     params.require(:user).permit(:name, :email, :password)
+  end
+
+  def render_user_or_error(
+    user,
+    error_message
+  )
+    if user
+      render json: user
+    else
+      render json: { error: error_message },
+             status: :not_found
+    end
+  end
+
+  def render_users_or_error(
+    users,
+    error_message
+  )
+    if users.any?
+      render json: users
+    else
+      render json: { error: error_message },
+             status: :not_found
+    end
   end
 end

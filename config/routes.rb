@@ -1,11 +1,20 @@
 Rails.application.routes.draw do
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
-  resources :users, only: [ :create, :index, :destroy, :update, :show ] # you're limiting the generated paths to only the actions you list
+  resources :users, only: [
+    :create,
+    :index,
+    :destroy,
+    :update,
+    :show
+  ] do
 
-  # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
-  # Can be used by load balancers and uptime monitors to verify that the app is live.
+    collection do
+      get 'find_by_name', to: 'users#find_by_name'
+      get 'find_by_email', to: 'users#find_by_email'
+      get 'find_by_name_email', to: 'users#find_by_name_and_email'
+    end
+  end
+
   get "up" => "rails/health#show", as: :rails_health_check
 
-  # Defines the root path route ("/")
-  # root "posts#index"
+  # root "posts#index" # Descomentar si tienes una ruta raíz definida.
 end
